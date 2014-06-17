@@ -1,0 +1,7 @@
+{% extends '_layouts/base.html' %}
+
+{% block headline %}<h1>Welcome to the pycon survival guide</h1>{% endblock %}
+
+{%block content %}
+Hallo {% if user.is_authenticated %} {{ user.username }} {% endif %}
+{% endblock %}

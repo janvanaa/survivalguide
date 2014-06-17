@@ -1,0 +1,30 @@
+{% extends '_layouts/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}{{ object.name }} Lists | {{ block.super }}{% endblock title %}
+
+{% block headline %}<h1>{{ object.name }}</h1>
+<h2>Your Lists</h2>
+{% endblock headline %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        {% for talk in object.talks.all %}
+            {% include 'talks/_talk.html' %}
+        {% endfor %}
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Add a new talk</h1>
+            </div>
+            <div class="panel-body">
+               {% crispy form %}
+            </div>                    
+        </div>        
+        <p><a href="{% url 'talks:lists:update' object.slug%}">Edit this list</a></p>
+        <p><a href="{% url 'talks:lists:delete' object.slug%}">Remove this list</a></p>
+        <p><a href="{% url 'talks:lists:list' %}">Back to lists</a></p>
+    </div>        
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends '_layouts/base.html' %}
+
+{% block title %}Lists | {{ block.super }}{% endblock title %}
+
+{% block headline %}<h1>Confirm List Deletion</h1>{% endblock headline %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        <ul class="list-group">
+            <h1>Are you sure you want to delete {{ object }}?</h1>    
+        </ul>
+        <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="yes">
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <p><a href="{% url 'talks:lists:create' %}" class="btn">Create a new list</a></p>
+    </div>
+</div>
+{% endblock %}
